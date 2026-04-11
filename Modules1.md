@@ -3,7 +3,7 @@
 <br/>
 
 <p align="center">
-  <a href="https://github.com/kaktotad/demo-sys-2026/blob/main/topologia.png" target="_blank">
+  <a href="https://github.com/crowcorpse/demo/blob/main/topologia.png" target="_blank">
     <img src="https://github.com/kaktotad/demo-sys-2026/blob/main/images/topologia.png?raw=true" alt="Топология" width="50%"/>
   </a>
 </p>
