@@ -3,8 +3,8 @@
 <br/>
 
 <p align="center">
-  <a href="https://github.com/crowcorpse/demo/blob/main/topologia.png" target="_blank">
-    <img src="https://github.com/kaktotad/demo-sys-2026/blob/main/images/topologia.png?raw=true" alt="Топология" width="50%"/>
+  <a href="https://github.com/crowcorpse/demo/blob/fc8b9a2470affd44de840409ac4e676ac1994c43/images/topologia.png" target="_blank">
+    <img src="https://github.com/crowcorpse/demo/blob/fc8b9a2470affd44de840409ac4e676ac1994c43/images/topologia.png?raw=true" alt="Топология" width="50%"/>
   </a>
 </p>
 
