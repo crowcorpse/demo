@@ -39,7 +39,7 @@ nano /etc/apt/sources.list
 
 и закомментировать находящуюся там строку (поставить знак #) перед каждой строчкой.
 
-Стало: ![image](https://github.com/user-attachments/assets/9fc5e769-7d3e-45c9-b7fa-a9f76d72d374)
+Стало: ![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/sources.png)
 
 Далее необходимой перейти в файл resolv.conf командой
 
@@ -52,7 +52,7 @@ nano /etc/resolv.conf
 nameserver 8.8.8.8
 ```
 
-Стало: ![image](https://github.com/kaktotad/demo-sys-2026/blob/567cb803758ce096cef66c19297bcfc8c7e4d335/images/resolv_google.png)
+Стало: ![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/resolv_google.png)
 
 Далее переходим в файл 
 ```
@@ -67,7 +67,9 @@ nano /etc/sysctl.conf
 net.ipv4.ip_forward=1
 ```
 
-Стало: ![image](https://github.com/user-attachments/assets/bfd8fb86-d2fd-4244-8e62-b3b4c70d6397)
+Стало:
+
+![image](https://github.com/user-attachments/assets/0341fe48-8355-4c7d-a855-18e10881707e)
 
 После чего необходимо применить данные изменения прописав команду 
 ```bash
@@ -163,7 +165,7 @@ auto ens256
 iface ens256 inet static
 address 172.16.2.1/28
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/5d4e2b9d4374c862b46b2fc4e2073adb57a21f7e/images/IP-ISP.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/IP-ISP.png)
 ```
 systemctl restart networking
 ```
@@ -185,7 +187,7 @@ auto ens224
 iface ens224 inet static
 address 192.168.1.1/28
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/1ddc964fbadf2a5ea5476fb492137f6db358073c/images/IP_hq-rtr.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/IP_hq-rtr.png)
 ```
 systemctl restart networking
 ```
@@ -207,7 +209,7 @@ auto ens224
 iface ens224 inet static
 address 192.168.4.1/28
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/1ddc964fbadf2a5ea5476fb492137f6db358073c/images/IP-br-rtr.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/IP-br-rtr.png)
 ```
 systemctl restart networking
 ```
@@ -224,7 +226,7 @@ iface ens192 inet static
 address 192.168.1.2/27
 gateway 192.168.1.1
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/1ddc964fbadf2a5ea5476fb492137f6db358073c/images/IP-hq-srv.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/IP-hq-srv.png)
 ```
 systemctl restart networking
 ```
@@ -257,7 +259,7 @@ iface ens192 inet static
 address 192.168.4.2/28
 gateway 192.168.4.1
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/1ddc964fbadf2a5ea5476fb492137f6db358073c/images/IP-br-srv.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/IP-br-srv.png)
 ```
 systemctl restart networking
 ```
@@ -298,7 +300,7 @@ table inet nat  {
 }
 ```
 Отступы выполяются tab  
-![images](https://github.com/kaktotad/demo-sys-2026/blob/d380abb8dbd1d84ffbae2281019685748f19a056/images/nftables-ISP.png)
+![images](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/nftables-ISP.png)
 
 Далее необходимло перезапустить службу Nftables командой
 ```bash
@@ -313,12 +315,12 @@ systemctl enable --now nftables
 ```bash
 ping 8.8.8.8
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/0820872186163672aa9d1563a6ee45d73b2f9c0f/images/hq-rtr_ping_google.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/hq-rtr_ping_google.png)
 >BR-RTR
 ```bash
 ping 8.8.8.8
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/0820872186163672aa9d1563a6ee45d73b2f9c0f/images/br-rtr_ping_google.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/br-rtr_ping_google.png)
 </details>
 
 [↑ Вернуться к навигации](#-навигация-по-методичке)
@@ -373,7 +375,7 @@ nano /etc/sudoers
 ```bash
 sshuser  ALL=(ALL) NOPASSWD:ALL
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/f69fbadfa848f9a08bed806276b0837a79d6041e/images/sshuser_visudo.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/sshuser_visudo.png)
 
 <h3>BR-SRV</h3>
 
@@ -401,7 +403,7 @@ nano /etc/sudoers
 ```bash
 sshuser  ALL=(ALL) NOPASSWD:ALL
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/f69fbadfa848f9a08bed806276b0837a79d6041e/images/sshuser_visudo.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/sshuser_visudo.png)
 </details>
 
 <details>
@@ -435,7 +437,7 @@ nano /etc/sudoers
 ```bash
 net_admin  ALL=(ALL) NOPASSWD:ALL
 ```
-![image](https://github.com/kaktotad/demo-sys-2026/blob/f69fbadfa848f9a08bed806276b0837a79d6041e/images/sshuser_visudo.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/sshuser_visudo.png)
 
 <h3>BR-RTR</h3>
 
@@ -702,7 +704,7 @@ systemctl restart networking
 ip -c a
 ```
 
-![iamge](https://github.com/kaktotad/demo-sys-2026/blob/96d9d6e25cede97aaca0af74bcfb62cefa40b2c8/images/ip_a_gre_BR-RTR.png)
+![iamge](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/ip_a_gre_BR-RTR.png)
 
 Если все хорошо и адаптер появился, то проверяем связть до удаленной машины командой
 ```bash
@@ -711,7 +713,7 @@ ping 10.10.10.1
 - если проверяете на HQ-RTR, то вводите в команде <code>ping</code> адрес 10.10.10.2
 - если проверяете на BR-RTR, то вводите в команде <code>ping</code> адрес 10.10.10.1
 
-![image](https://github.com/kaktotad/demo-sys-2026/blob/ea6ebb25ac892b0edfdf8a1102a7bc06c0dcc3d6/images/GRE_ping_BR_to_HQ.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/GRE_ping_BR_to_HQ.png)
 
 </details>
 
@@ -751,7 +753,7 @@ apt install frr -y
 nano /etc/frr/daemons
 ```
 Находим строку <code>ospfd = no</code> и меняем занчение на <code>yes</code></br>
-![image](https://github.com/kaktotad/demo-sys-2026/blob/bedcd28dc3b815d63b58cf2afcdede1a7cddc943/images/frr_daemons_on.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/frr_daemons_on.png)
 </br>
 **3.** Далее перезагружаем и добавляем в автозагрузку службу <strong>FRR</strong> командой
 ```bash
@@ -842,7 +844,7 @@ apt install frr -y
 nano /etc/frr/daemons
 ```
 Находим строку <code>ospfd = no</code> и меняем занчение на <code>yes</code></br>
-![image](https://github.com/kaktotad/demo-sys-2026/blob/bedcd28dc3b815d63b58cf2afcdede1a7cddc943/images/frr_daemons_on.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/frr_daemons_on.png)
 </br>
 **3.** Далее перезагружаем и добавляем в автозагрузку службу <strong>FRR</strong> командой
 ```bash
@@ -950,7 +952,7 @@ table inet nat{
 }
 ```
 
-![image](https://github.com/kaktotad/demo-sys-2026/blob/63733d2e985d05425c3355da47b0fec4c8f23d2b/images/nat_RTR_net.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/nat_RTR_net.png)
 
 где <strong>ens192</strong> - интерфейс HQ-RTR смотрящий к ISP
 
@@ -980,7 +982,7 @@ table inet nat{
 }
 ```
 
-![image](https://github.com/kaktotad/demo-sys-2026/blob/63733d2e985d05425c3355da47b0fec4c8f23d2b/images/nat_RTR_net.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/nat_RTR_net.png)
 
 где <strong>ens192</strong> - интерфейс HQ-RTR смотрящий к ISP
 
@@ -1030,7 +1032,7 @@ nano /etc/resolv.conf
 nameserver 8.8.8.8
 ```
 
-Стало: ![image](https://github.com/kaktotad/demo-sys-2026/blob/567cb803758ce096cef66c19297bcfc8c7e4d335/images/resolv_google.png)
+Стало: ![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/resolv_google.png)
 
 Первым шагом необходимо скачать пакет DHCP-сервера командой
 ```bash
@@ -1052,7 +1054,7 @@ subnet 192.168.200.0 netmask 255.255.255.240 {
 ```
 Стало:
 
-![image](https://github.com/kaktotad/demo-sys-2026/blob/6a09aaf11983c8e93bcd2609f23e64e802393953/images/conf_DHCP-server.png)
+![image](https://github.com/crowcorpse/demo/blob/1aa4f2288041274f2cd7e7fe9b2b65b605ee4fd3/images/conf_DHCP-server.png)
 
 после чего переходим в конфигурацию файла <code>/etc/default/isc-dhcp-server</code> и меняем ее, добавляя данный текст:
 ```bash
