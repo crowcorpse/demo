@@ -946,7 +946,7 @@ systemctl restart frr
 Открываем файл <code>/etc/nftables.conf</code>
 
 ```bash
-nano /etc/nfatbles.conf
+nano /etc/nftables.conf
 ```
 Прописываем следующие строки
 ```bash
@@ -975,7 +975,7 @@ systemctl enable --now nftables
 Открываем файл <code>/etc/nftables.conf</code>
 
 ```bash
-nano /etc/nfatbles.conf
+nano /etc/nftables.conf
 ```
 
 Прописываем следующие строки
@@ -983,7 +983,7 @@ nano /etc/nfatbles.conf
 table inet nat{
   chain POSTROUTING {
   type nat hook postrouting priority srcnat;
-  oifname "ens192" masquerde
+  oifname "ens192" masquerade
   }
 }
 ```
