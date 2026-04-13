@@ -498,7 +498,7 @@ net_admin  ALL=(ALL) NOPASSWD:ALL
 
 Для установки адресации на VLAN cети необходимо пупупу
 
-На <strong>HQ-RTR</strong> и <strong>ISP</strong> проверим что файл <strong>/etc/resolve.conf</strong> не слетел, если слетел прописываем
+На <strong>HQ-RTR</strong> и <strong>ISP</strong> проверим что файл <strong>/etc/resolv.conf</strong> не слетел, если слетел прописываем
 ```bash
 nameserver 8.8.8.8
 ```
