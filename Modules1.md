@@ -953,7 +953,7 @@ nano /etc/nfatbles.conf
 table inet nat{
   chain POSTROUTING {
   type nat hook postrouting priority srcnat;
-  oifname "ens192" masquerde
+  oifname "ens192" masquerade
   }
 }
 ```
