@@ -287,7 +287,7 @@ ip -c a
 
 ISP
 ```bash
-nano /etc/nfatbles.conf
+nano /etc/nftables.conf
 ```
 В конце файла добавить правило для NAT
 
