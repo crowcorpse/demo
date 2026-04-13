@@ -630,6 +630,7 @@ systemctl restart sshd
 <br/>
 <h3>HQ-RTR</h3>
 Для настройки <strong><code>GRE</code></strong> туннеля на <strong>HQ-RTR</strong> переходим в файл конфигурации
+
 ```bash
 nano /etc/network/interfaces
 ```
