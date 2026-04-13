@@ -670,6 +670,11 @@ systemctl restart networking
 Для настройки <strong><code>GRE</code></strong> туннеля на <strong>BR-RTR</strong> переходим в файл конфигурации
 
 ```bash
+nano /etc/network/interfaces
+```
+Далее дописываем в конце строчки
+
+```bash
 auto gre1
 iface gre1 inet tunnel
 address 10.10.10.2
