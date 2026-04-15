@@ -1058,7 +1058,7 @@ nano /etc/dhcp/dhcpd.conf -l
 Листаем файл до 50 строки и раскомментируем блок вставляя свои занчения
 ```bash
 subnet 192.168.2.0 netmask 255.255.255.240 {
-  range 192.168.200.2 192.168.2.14;
+  range 192.168.2.2 192.168.2.14;
   option domain-name-servers 192.168.1.2;
   option domain-name "au-team.irpo";
   option routers 192.168.2.1;
