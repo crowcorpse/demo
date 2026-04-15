@@ -235,6 +235,12 @@ ip -c a
 ```
 
 🖥️ HQ-CLI
+```bash
+sudo -i
+```
+
+Введите пароль <code>P@ssw0rd</code>
+
 ```
 nano /etc/network/interfaces
 ```
@@ -1051,11 +1057,11 @@ nano /etc/dhcp/dhcpd.conf -l
 ```
 Листаем файл до 50 строки и раскомментируем блок вставляя свои занчения
 ```bash
-subnet 192.168.200.0 netmask 255.255.255.240 {
-  range 192.168.200.2 192.168.200.14;
-  option domain-name-servers 192.168.100.62;
+subnet 192.168.2.0 netmask 255.255.255.240 {
+  range 192.168.200.2 192.168.2.14;
+  option domain-name-servers 192.168.1.2;
   option domain-name "au-team.irpo";
-  option routers 192.168.200.1;
+  option routers 192.168.2.1;
 }
 ```
 Стало:
@@ -1081,18 +1087,8 @@ systemctl enable --now isc-dhcp-server
 nano /etc/network/interfaces
 ```
 
-и меняем старый конфиг
+и меняем на это
 
-```bash
-auto ens192
-iface ens192 inet static
-address 192.168.200.2
-netmask 255.255.255.240
-gateway 192.168.200.1
-dns-nameservers 192.168.100.2
-```
-
-на этот
 ```bash
 auto ens192
 iface ens192 inet dhcp
@@ -1133,9 +1129,47 @@ ip -c a
 ---
 
 <a id="время"></a>
-## ❌ 12. Настройка часового пояса
+## ✔️ 12. Настройка часового пояса
 
-*текст*
+<details>
+<summary>ОПИСАНИЕ ЗАДАНАИЯ</summary>
+Настройте часовой пояс на всех устройствах
+</details>
+
+<details>
+<summary><strong>Данное задание выполняеться на ВСЕХ машинах</strong></summary>
+  
+> <strong>ISP</strong>:
+```bash
+timedatectl set-timezone Asia/Tomk
+```
+
+> <strong>HQ-RTR</strong>:
+```bash
+timedatectl set-timezone Asia/Tomk
+```
+
+> <strong>BR-RTR</strong>:
+```
+timedatectl set-timezone Asia/Tomk
+```
+
+> <strong>HQ-SRV</strong>:
+```
+timedatectl set-timezone Asia/Tomk
+```
+
+> <strong>HQ-CLI</strong>:
+```
+timedatectl set-timezone Asia/Tomk
+```
+
+> <strong>BR-SRV</strong>:
+```
+timedatectl set-timezone Asia/Tomk
+```
+</details>
+
 
 [↑ Вернуться к навигации](#-навигация-по-методичке)
 
