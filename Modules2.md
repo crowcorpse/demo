@@ -336,7 +336,7 @@ nano /etc/nftables.conf
 ```
 
 Дописываем вот тут:  
-![image](https://каб-220.рф/demo-2026/modul-2/2-8_006.png)  
+![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/HQ-RTR_ports_for_web.png)  
 
 ```bash
 ip daddr 172.16.1.2 tcp dport 8080 dnat ip to 192.168.100.2:80
@@ -356,7 +356,7 @@ nano /etc/nftables.conf
 ```
 
 Дописываем вот тут:  
-![image](https://каб-220.рф/demo-2026/modul-2/2-8_007.png)  
+![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/BR-RTR_ports_for_web.png)  
 
 ```bash
 ip daddr 172.16.2.2 tcp dport 8080 dnat ip to 192.168.0.2:8080
@@ -370,10 +370,10 @@ systemctl restart nftables
 ```
 
 Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес BR-RTR смотрящий в сторону ISP и порт 8080. (172.16.2.2:8080)  
-![image](https://каб-220.рф/demo-2026/modul-2/2-8_002.png)
+![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/check_docker_port.png)
 
-Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес HQ-RTR смотрящий в сторону ISP и порт 8080. (172.16.2.2:8080)  
-![image](https://каб-220.рф/demo-2026/modul-2/2-8_004.png)
+Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес HQ-RTR смотрящий в сторону ISP и порт 8080. (172.16.1.2:8080)  
+![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/check_web_port.png)
 
 
 </details>
