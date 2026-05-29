@@ -280,7 +280,7 @@ services:
     ports:
       - "8080:8000"
     environment:
-      DB_HOST: "192.168.0.2"
+      DB_HOST: "192.168.4.2"
       DB_PORT: "3306"
       DB_NAME: testdb
       DB_USER: test
@@ -339,8 +339,11 @@ nano /etc/nftables.conf
 ![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/HQ-RTR_ports_for_web.png)  
 
 ```bash
-ip daddr 172.16.1.2 tcp dport 8080 dnat ip to 192.168.100.2:80
-ip daddr 172.16.1.2 tcp dport 2026 dnat ip to 192.168.100.2:2026
+        chain prerouting {
+        type nat hook prerouting priority filter;
+        ip daddr 172.16.1.2 tcp dport 8080 dnat ip to 192.168.1.2:80
+        ip daddr 172.16.1.2 tcp dport 2026 dnat ip to 192.168.1.2:2026
+        }
 ```
 
 Перезагружаем nftables:
@@ -359,8 +362,11 @@ nano /etc/nftables.conf
 ![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/BR-RTR_ports_for_web.png)  
 
 ```bash
-ip daddr 172.16.2.2 tcp dport 8080 dnat ip to 192.168.0.2:8080
-ip daddr 172.16.2.2 tcp dport 2026 dnat ip to 192.168.0.2:2026
+        chain prerouting {
+        type nat hook prerouting priority filter;
+        ip daddr 172.16.2.2 tcp dport 8080 dnat ip to 192.168.4.2:8080
+        ip daddr 172.16.2.2 tcp dport 2026 dnat ip to 192.168.4.2:2026
+        }
 ```
 
 Перезагружаем nftables:
