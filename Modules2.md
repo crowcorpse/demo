@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/kaktotad/demo-sys-2026/blob/main/topologia.png" target="_blank">
-    <img src="https://github.com/kaktotad/demo-sys-2026/blob/main/images/topologia.png?raw=true" alt="Топология" width="50%"/>
+    <img src="https://github.com/crowcorpse/demo/blob/5a2dc610bab7da6d103fd0377c3c7c788dc3db87/images/topologia.png?raw=true" alt="Топология" width="50%"/>
   </a>
 </p>
 
