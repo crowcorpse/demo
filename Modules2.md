@@ -381,6 +381,7 @@ systemctl restart nftables
 Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес HQ-RTR смотрящий в сторону ISP и порт 8080. (172.16.1.2:8080)  
 ![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/check_web_port.png)
 
+</details>
 
 ---
 
