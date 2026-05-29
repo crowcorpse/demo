@@ -203,3 +203,178 @@ df -h
 ```
 
 </details>
+
+---
+
+<a id="ansible"></a>
+## ✔️ 15. Ansible
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>BR-SRV</h2>
+
+На BR-SRV:
+
+```bash
+apt install ansible sshpass -y
+```
+Далее:
+```bash
+mkdir /etc/ansible
+cat > /etc/ansible/ansible.cfg <<EOF
+[defaults]
+host_key_checking = False
+inventory = hosts.ini
+EOF
+cat > /etc/ansible/hosts.ini <<EOF
+192.168.1.2 ansible_user=sshuser ansible_port=2026 ansible_password=P@ssw0rd
+192.168.2.3 ansible_user=locadm ansible_password=P@ssw0rd
+10.10.10.1 ansible_user=net_admin ansible_password=P@ssw0rd
+10.10.10.2 ansible_user=net_admin ansible_password=P@ssw0rd
+EOF
+cd /etc/ansible
+ansible all -m ping
+```
+
+</details>
+
+---
+
+<a id="docker"></a>
+## ✔️ 15. Docker
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>BR-SRV</h2>
+
+```bash
+apt install docker.io docker-compose
+```
+
+Монтирование cdrom:
+```bash
+sudo mount -t iso9660 -o ro /dev/sr0 /mnt/
+```
+
+Импорт образов:
+```bash
+cd /mnt/docker
+docker load -i mariadb_latest.tar
+docker load -i postgresql_latest.tar
+docker load -i site_latest.tar
+```
+
+Теперь:
+```bash
+mkdir /opt/testapp
+cat > /opt/testapp/docker-compose.yml <<EOF
+services:
+  testapp:
+    container_name: testapp
+    image: site:latest
+    restart: always
+    ports:
+      - "8080:8000"
+    environment:
+      DB_HOST: "192.168.0.2"
+      DB_PORT: "3306"
+      DB_NAME: testdb
+      DB_USER: test
+      DB_PASS: P@ssw0rd
+      DB_TYPE: maria
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: mariadb:10.11
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      DB_USER: test
+      DB_PASS: P@ssw0rd
+      DN_NAME: testdb
+      MARIADB_ROOT_PASSWORD: P@ssw0rd
+         
+EOF
+cd /opt/testapp
+docker-compose up -d
+```
+
+---
+
+<a id="web"></a>
+## ❌ 16. Web-приложение
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>HQ-SRV</h2>
+
+</details>
+
+---
+
+<a id="проброс"></a>
+## ❌ 17. Проброс портов
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>HQ-RTR</h2>
+
+```bash
+nano /etc/nftables.conf
+```
+
+Дописываем вот тут:
+![image](<img width="577" height="269" alt="image" src="https://github.com/user-attachments/assets/2ea28b4a-561e-4d9e-b950-eaa030500c6d" />)  
+
+```bash
+ip daddr 172.16.1.2 tcp dport 8080 dnat ip to 192.168.100.2:80
+ip daddr 172.16.1.2 tcp dport 2026 dnat ip to 192.168.100.2:2026
+```
+
+Перезагружаем nftables:
+
+```bash
+systemctl restart nftables
+```
+
+<h2>BR-RTR</h2>
+
+```bash
+nano /etc/nftables.conf
+```
+
+Дописываем вот тут:
+![image](<img width="596" height="266" alt="image" src="https://github.com/user-attachments/assets/c63dd014-268c-41b5-86b2-c4ebd045132f" />)  
+
+```bash
+ip daddr 172.16.2.2 tcp dport 8080 dnat ip to 192.168.0.2:8080
+ip daddr 172.16.2.2 tcp dport 2026 dnat ip to 192.168.0.2:2026
+```
+
+Перезагружаем nftables:
+
+```bash
+systemctl restart nftables
+```
+
+Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес BR-RTR смотрящий в сторону ISP и порт 8080. (172.16.2.2:8080)
+![image](<img width="1315" height="495" alt="image" src="https://github.com/user-attachments/assets/c072cc94-259a-437b-a0a8-e772113a4e4d" />)
+
+Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес HQ-RTR смотрящий в сторону ISP и порт 8080. (172.16.2.2:8080)
+![image](<img width="846" height="530" alt="image" src="https://github.com/user-attachments/assets/de7e2e5b-8484-45cf-a8d6-81d6d48c9082" />)
+
+
+</details>
+
+
