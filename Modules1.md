@@ -1113,15 +1113,60 @@ ip -c a
 
 <details>
 <summary>ОПИСАНИЕ ЗАДАНИЯ</summary>
+  
 Настройте инфраструктуру разрешения доменных имён для офисов HQ и BR:
 - Основной DNS-сервер реализован на HQ-SRV
 - Сервер должен обеспечивать разрешение имён в сетевые адреса устройств и обратно в соответствии с таблицей 3
 
 - В качестве DNS сервера пересылки используйте любой общедоступный DNS сервер(77.88.8.7, 77.88.8.3 или другие)
 </details>
+
 <details>
-<h3>HQ-SRV</h3>
-Устанавливаем DNS-сервер bind bind-utils
+<summary>РЕШЕНИЕ</summary>
+
+Первым делом:
+```bash
+apt install dnsmasq -y
+```
+
+Затем нужно отредактировать файл /etc/dnsmasq.conf:
+
+```bash
+cat > /etc/dnsmasq.conf <<EOF
+domain=au-team.irpo
+local=/au-team.irpo/192.168.1.2
+server=8.8.8.8
+server=8.8.4.4
+host-record=hq-rtr.au-team.irpo,192.168.1.1
+host-record=hq-srv.au-team.irpo,192.168.1.2
+host-record=hq-cli.au-team.irpo,192.168.2.3
+host-record=br-rtr.au-team.irpo,192.168.0.1
+host-record=br-srv.au-team.irpo,192.168.0.2
+host-record=docker.au-team.irpo,172.16.1.1
+host-record=web.au-team.irpo,172.16.2.1
+EOF
+```
+
+Далее нужно отредактировать файл <code>/usr/share/dnsmasq/init-system-common</code>, убрав из строки <code>DNSMASQ_OPTS</code> значение <code>--local-service</code>:
+
+```bash
+sed -i '/DNSMASQ_OPTS/s/ --local-service//' /usr/share/dnsmasq/init-system-common
+systemctl restart dnsmasq
+systemctl enable dnsmasq
+```
+
+Заключительным шагом на каждой машине, кроме <strong>HQ-CLI</strong> и <strong>ISP</strong>, необходимо прописать сервер в файле <code>/etc/resolv.conf</code>:
+```bash
+echo "nameserver 192.168.1.2" > /etc/resolv.conf
+```
+
+<h2>Проверка</h2>
+
+Для проверки работы на любой машине нужно сделать:
+```bash
+host docker.au-team.irpo
+host 172.16.1.1
+```
 
 </details>
 
