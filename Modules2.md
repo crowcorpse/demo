@@ -305,6 +305,7 @@ EOF
 cd /opt/testapp
 docker-compose up -d
 ```
+</details>
 
 ---
 
@@ -322,7 +323,7 @@ docker-compose up -d
 ---
 
 <a id="проброс"></a>
-## ❌ 17. Проброс портов
+## ✔️ 17. Проброс портов
 
 <details>
 
