@@ -1109,7 +1109,7 @@ ip -c a
 ---
 
 <a id="dns"></a>
-## ❌ 11. Настройка DNS
+## ✔️ 11. Настройка DNS
 
 <details>
 <summary>ОПИСАНИЕ ЗАДАНИЯ</summary>
@@ -1140,8 +1140,8 @@ server=8.8.4.4
 host-record=hq-rtr.au-team.irpo,192.168.1.1
 host-record=hq-srv.au-team.irpo,192.168.1.2
 host-record=hq-cli.au-team.irpo,192.168.2.3
-host-record=br-rtr.au-team.irpo,192.168.3.1
-host-record=br-srv.au-team.irpo,192.168.3.2
+host-record=br-rtr.au-team.irpo,192.168.4.1
+host-record=br-srv.au-team.irpo,192.168.4.2
 host-record=docker.au-team.irpo,172.16.1.1
 host-record=web.au-team.irpo,172.16.2.1
 EOF
