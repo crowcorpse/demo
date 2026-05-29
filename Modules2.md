@@ -124,3 +124,82 @@ ad_gpo_access_mode = disabled
 
 Это отключит проверку групповых политик, поэтому должно пустить.
 </details>
+
+---
+
+<a id="raid"></a>
+## ✔️ 13. RAID
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>HQ-SRV</h2>
+На HQ-SRV:
+
+```bash
+apt install mdadm -y
+```
+Собрать массив:
+
+```bash
+mdadm --create --verbose /dev/md0 -l 0 -n 2 /dev/sd{b,c}
+mdadm --detail --scan | tee /etc/mdadm.conf
+update-initramfs -u
+```
+
+Форматирование раздела в ext4:
+```bash
+mkfs.ext4 /dev/md0
+```
+Автомонтирование:
+```bash
+mkdir /raid
+mount /dev/md0 /raid
+echo /dev/md0 /raid ext4 defaults 0 0 | tee -a /etc/fstab
+```
+</details>
+
+---
+
+<a id="nfs"></a>
+## ✔️ 14. NFS
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>HQ-SRV</h2>
+
+```bash
+apt install nfs-kernel-server -y
+```
+
+Далее:
+```bash
+mkdir /raid/nfs
+chmod 777 /raid/nfs
+echo '/raid/nfs 192.168.2.0/28(rw,sync,no_subtree_check)' | tee -a /etc/exports
+systemctl restart nfs-kernel-server
+```
+
+<h2>HQ-CLI</h2>
+
+```bash
+apt install nfs-common -y
+```
+
+Далее:
+```bash
+mkdir /mnt/nfs
+echo '192.168.1.2:/raid/nfs /mnt/nfs nfs defaults 0 0' | tee -a /etc/fstab
+systemctl daemon-reload
+mount -a
+```
+
+Проверка:
+```bash
+df -h
+```
+
+</details>
