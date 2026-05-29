@@ -91,12 +91,12 @@ su - hquser1@au-team.irpo
 
 Если пишет <code>su: Системная ошибка:</code>
 
-Необходимо сделать на BR-SRV:
+1. Необходимо сделать на BR-SRV:
 ```bash
 samba-tool ntacl sysvolreset
 ```
 
-Попробовать подключиться через smbclient напрямую для просмотра политик:
+2. Попробовать подключиться через smbclient напрямую для просмотра политик:
 ```bash
 apt install smbclient -y
 ```
@@ -117,7 +117,7 @@ klist -k /etc/krb5.keytab
 
 Попробовать снова <code>smbclient</code>. Если получается - сделать первый шаг.
 
-Если вообще ничего не выходит - перейти в файл /etc/sssd/sssd.conf и добавить следующую строку:
+3. Если вообще ничего не выходит - перейти в файл /etc/sssd/sssd.conf и добавить следующую строку:
 ```bash
 ad_gpo_access_mode = disabled
 ```
