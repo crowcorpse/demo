@@ -243,7 +243,7 @@ ansible all -m ping
 ---
 
 <a id="docker"></a>
-## ✔️ 15. Docker
+## ✔️ 16. Docker
 
 <details>
 
@@ -310,7 +310,7 @@ docker-compose up -d
 ---
 
 <a id="web"></a>
-## ❌ 16. Web-приложение
+## ❌ 17. Web-приложение
 
 <details>
 
@@ -323,7 +323,7 @@ docker-compose up -d
 ---
 
 <a id="проброс"></a>
-## ✔️ 17. Проброс портов
+## ✔️ 18. Проброс портов
 
 <details>
 
@@ -382,6 +382,50 @@ systemctl restart nftables
 ![image](https://github.com/crowcorpse/demo/blob/e5cd5bcae9eca1e26f8217514728b381c94f2d3f/images/check_web_port.png)
 
 
+---
+
+<a id="прокси"></a>
+## ✔️ 19. Обратный прокси
+
+<details>
+
+<summary>Решенеие</summary>
+
+<h2>ISP</h2>
+
+```bash
+apt install nginx apache2-utils -y
+```
+Далее:
+```bash
+cat > /etc/nginx/sites-available/rp <<EOF
+server {
+        listen 80;
+        server_name web.au-team.irpo;
+        location / {
+        auth_basic "Введите учетные данные:";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+        proxy_pass http://172.16.1.2:8080;
+        proxy_set_header Host $host;
+    }
+}
+
+server {
+        listen 80;
+        server_name docker.au-team.irpo;
+
+        location / {
+        proxy_pass http://172.16.2.2:8080;
+        proxy_set_header Host $host;
+        }
+}
+EOF
+ln -s /etc/nginx/sites-available/rp /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+htpasswd -b -c /etc/nginx/.htpasswd WEB P@ssw0rd
+nginx -t
+systemctl restart nginx
+```
 </details>
 
 
