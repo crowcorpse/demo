@@ -29,6 +29,7 @@
 
 <h2><strong>BR-SRV</strong></h2>
 Сначала:
+
 ```bash
 apt install samba winbind -y
 ```
