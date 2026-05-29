@@ -29,7 +29,6 @@
 
 <h2><strong>BR-SRV</strong></h2>
 Сначала:
-
 ```bash
 apt install samba winbind -y
 ```
@@ -100,7 +99,6 @@ samba-tool ntacl sysvolreset
 ```bash
 apt install smbclient -y
 ```
-
 ```bash
 smbclient //br-srv/sysvol -k -c 'ls au-team.irpo/Policies'
 ```
