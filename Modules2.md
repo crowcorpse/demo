@@ -1,4 +1,4 @@
-## <div align="center"><strong>⚙️</strong></div> <div align="center"><strong>МОДУЛЬ 1</strong></div>
+## <div align="center"><strong>⚙️</strong></div> <div align="center"><strong>МОДУЛЬ 2</strong></div>
 
 <br/>
 
