@@ -336,7 +336,7 @@ nano /etc/nftables.conf
 ```
 
 Дописываем вот тут:
-![image](<img width="577" height="269" alt="image" src="https://github.com/user-attachments/assets/2ea28b4a-561e-4d9e-b950-eaa030500c6d" />)  
+![image](https://каб-220.рф/demo-2026/modul-2/2-8_006.png)  
 
 ```bash
 ip daddr 172.16.1.2 tcp dport 8080 dnat ip to 192.168.100.2:80
@@ -356,7 +356,7 @@ nano /etc/nftables.conf
 ```
 
 Дописываем вот тут:
-![image](<img width="596" height="266" alt="image" src="https://github.com/user-attachments/assets/c63dd014-268c-41b5-86b2-c4ebd045132f" />)  
+![image](https://каб-220.рф/demo-2026/modul-2/2-8_007.png)  
 
 ```bash
 ip daddr 172.16.2.2 tcp dport 8080 dnat ip to 192.168.0.2:8080
@@ -370,10 +370,10 @@ systemctl restart nftables
 ```
 
 Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес BR-RTR смотрящий в сторону ISP и порт 8080. (172.16.2.2:8080)
-![image](<img width="1315" height="495" alt="image" src="https://github.com/user-attachments/assets/c072cc94-259a-437b-a0a8-e772113a4e4d" />)
+![image](https://каб-220.рф/demo-2026/modul-2/2-8_002.png)
 
 Проверяем возможность доступа к ресурсу извне. Введя на HQ-CLI IP-адрес HQ-RTR смотрящий в сторону ISP и порт 8080. (172.16.2.2:8080)
-![image](<img width="846" height="530" alt="image" src="https://github.com/user-attachments/assets/de7e2e5b-8484-45cf-a8d6-81d6d48c9082" />)
+![image](https://каб-220.рф/demo-2026/modul-2/2-8_004.png)
 
 
 </details>
