@@ -956,11 +956,16 @@ nano /etc/nftables.conf
 ```
 Прописываем следующие строки
 ```bash
-table inet nat{
-  chain POSTROUTING {
-  type nat hook postrouting priority srcnat;
-  oifname "ens192" masquerade
-  }
+table inet nat {
+        chain postrouting {
+        type nat hook postrouting priority srcnat;
+        oifname "ens192" masquerade
+        }
+        chain prerouting {
+        type nat hook prerouting priority filter;
+        ip daddr 172.16.1.2 tcp dport 8080 dnat ip to 192.168.1.2:80
+        ip daddr 172.16.1.2 tcp dport 2026 dnat ip to 192.168.1.2:2026
+        }
 }
 ```
 
@@ -986,11 +991,16 @@ nano /etc/nftables.conf
 
 Прописываем следующие строки
 ```bash
-table inet nat{
-  chain POSTROUTING {
-  type nat hook postrouting priority srcnat;
-  oifname "ens192" masquerade
-  }
+table inet nat {
+        chain postrouting {
+        type nat hook postrouting priority srcnat;
+        oifname "ens192" masquerade
+        }
+        chain prerouting {
+        type nat hook prerouting priority filter;
+        ip daddr 172.16.2.2 tcp dport 8080 dnat ip to 192.168.0.2:8080
+        ip daddr 172.16.2.2 tcp dport 2026 dnat ip to 192.168.0.2:2026
+        }
 }
 ```
 
