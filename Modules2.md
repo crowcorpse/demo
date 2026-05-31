@@ -310,7 +310,7 @@ docker-compose up -d
 ---
 
 <a id="web"></a>
-## ❌ 17. Web-приложение
+## ✔️ 17. Web-приложение
 
 <details>
 
