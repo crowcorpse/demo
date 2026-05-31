@@ -280,7 +280,7 @@ services:
     ports:
       - "8080:8000"
     environment:
-      DB_HOST: "192.168.4.2"
+      DB_HOST: "192.168.0.2"
       DB_PORT: "3306"
       DB_NAME: testdb
       DB_USER: test
@@ -296,9 +296,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      DB_USER: test
-      DB_PASS: P@ssw0rd
-      DN_NAME: testdb
+      MARIADB_USER: test
+      MARIADB_PASSWORD: P@ssw0rd
+      MARIADB_DATABASE: testdb
       MARIADB_ROOT_PASSWORD: P@ssw0rd
          
 EOF
