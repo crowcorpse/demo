@@ -316,7 +316,62 @@ docker-compose up -d
 
 <summary>Решенеие</summary>
 
+<h2>BR-SRV</h2>
+На BR-SRV:
+
+```bash
+scp -P 2026 -r /mnt/web/ sshuser@hq-srv:/home/sshuser
+```
+
 <h2>HQ-SRV</h2>
+
+На HQ-SRV установить пакеты:
+```bash
+apt install apache2-* mariadb-* php php8.2 php-curl php-zip php-xml libapache2-mod-php php-mysql php-mbstring php-gd php-intl php-soap -y
+```
+
+Теперь:
+```bash
+cd /home/sshuser/web
+cp index.php logo.png /var/www/html/
+rm /var/www/html/index.html
+sed -i 's/\$username\s*=\s*"[^"]*";/\$username = "webc";/g' /var/www/html/index.php
+sed -i 's/\$password\s*=\s*"[^"]*";/\$password = "P@ssw0rd";/g' /var/www/html/index.php
+sed -i 's/\$dbname\s*=\s*"[^"]*";/\$dbname = "webdb";/g' /var/www/html/index.php
+```
+
+Теперь зайти в СУБД:
+```bash
+mysql
+```
+Создать базу, пользователя и импортировать схему:
+```bash
+create database webdb;
+```
+```bash
+create user `webc`@`localhost` identified by 'P@ssw0rd';
+```
+```bash
+grant all privileges on webdb.* TO `webc`@`localhost` with grant option;
+```
+```bash
+flush privileges;
+```
+```bash
+use webdb;
+```
+```bash
+source /home/sshuser/web/dump.sql;
+```
+```bash
+exit;
+```
+
+И, наконец:
+```bash
+systemctl restart mariadb apache2
+systemctl enable mariadb apache2
+```
 
 </details>
 
