@@ -523,8 +523,8 @@ echo 8021q >> /etc/modules
 ```
 auto ens192  
 iface ens192 inet static  
-address 172.16.1.2/28    
-gateway 172.16.4.1  
+address 172.16.10.2/28    
+gateway 172.16.10.1  
   
 auto ens224  
 iface ens224 inet static  
@@ -573,7 +573,7 @@ address 192.168.3.1/29
 <summary>Данное задание выполняется на <strong>HQ-SRV</strong> и <strong>BR-SRV</strong></summary></br>
 
 Настройте безопасный удаленный доступ на серверах HQ-SRV и BR-SRV:
-- Для подключения используйте порт 2026
+- Для подключения используйте порт 2011
 - Разрешите подключения исключительно пользователю sshuser
 - Ограничьте количество попыток входа до двух
 - Настройте баннер «Authorized access only»
@@ -590,7 +590,7 @@ nano /etc/ssh/sshd_config
 ```
 и добавить строчки в файл
 ```bash
-Port 2026
+Port 2011
 MaxAuthTries 2
 PasswordAuthentication yes
 Banner /etc/ssh/bannermotd
@@ -648,8 +648,8 @@ iface gre1 inet tunnel
 address 10.10.10.1
 netmask 255.255.255.252
 mode gre
-local 172.16.1.2
-endpoint 172.16.2.2
+local 172.16.10.2
+endpoint 172.16.20.2
 ttl 64
 ```
 
@@ -686,8 +686,8 @@ iface gre1 inet tunnel
 address 10.10.10.2
 netmask 255.255.255.252
 mode gre
-local 172.16.2.2
-endpoint 172.16.1.2
+local 172.16.20.2
+endpoint 172.16.10.2
 ttl 64
 ```
 
@@ -792,8 +792,8 @@ passive-interface default
 ```
 Объявляем локальную сети офиса HQ (сеть VLAN100, VLAN200, VLAN999) и сеть (GRE-туннеля)
 ```bash
-network 192.168.1.0/27 area 0
-network 192.168.2.0/28 area 0
+network 192.168.111.0/27 area 0
+network 192.168.211.0/28 area 0
 network 192.168.3.0/29 area 0
 network 10.10.10.0/30 area 0
 ```
